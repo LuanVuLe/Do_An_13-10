@@ -1,0 +1,206 @@
+﻿<Window x:Class="Do_An.GiaoDien_NVQL"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dashboard - StarEnglish"
+        Height="650" Width="1050"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="SidebarListItem" TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="4,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bd" CornerRadius="8" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#335C99"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1D3557"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LogoutButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#E63946"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.95"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#1E293B"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Margin" Value="16"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1.2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" BlurRadius="8" ShadowDepth="2" Opacity="0.10"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" CornerRadius="16" SnapsToDevicePixels="True"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#F1F5FF"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#64748B"/>
+                                <Setter TargetName="bd" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#000000" BlurRadius="10" ShadowDepth="3" Opacity="0.20"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#E5E7EB"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#64748B"/>
+                                <Setter TargetName="bd" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#000000" BlurRadius="8" ShadowDepth="2" Opacity="0.14"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0" Background="#1E3A8A">
+            <TextBlock Text="StarEnglish" DockPanel.Dock="Top" Foreground="White"
+                       FontSize="26" FontWeight="Bold" Margin="20,25,0,35"/>
+
+            <StackPanel DockPanel.Dock="Bottom" Margin="12">
+                <Button Content="🚪 Đăng xuất"
+                        Style="{StaticResource LogoutButtonStyle}"
+                        Click="BtnThoat_Click"/>
+            </StackPanel>
+
+            <ListBox x:Name="MenuList" DockPanel.Dock="Top" Background="#1E3A8A"
+                     BorderThickness="0" Foreground="White" FontSize="16"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ItemContainerStyle="{StaticResource SidebarListItem}">
+
+                <ListBoxItem Content="🏠 Trang chủ"/>
+                <ListBoxItem Content="📝 Đăng ký học viên"/>
+                <ListBoxItem Content="🏫 Mở lớp học"/>
+                <ListBoxItem Content="👩‍🏫 Phân công giáo viên"/>
+                <ListBoxItem Content="📊 Quản lý điểm"/>
+                <ListBoxItem Content="💰 Quản lý học phí"/>
+                <ListBoxItem Content="📑 Báo cáo &amp; Thống kê"/>
+            </ListBox>
+        </DockPanel>
+
+        <ScrollViewer Grid.Column="1" Background="#F5F7FA" VerticalScrollBarVisibility="Auto">
+
+            <Grid>
+                <ContentControl x:Name="MainContent" Margin="35,30,35,30" 
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                <StackPanel x:Name="DashboardPanel" Margin="35,30,35,30" VerticalAlignment="Top">
+
+                    <TextBlock x:Name="txtHeader" 
+                               Text="Bảng điều khiển - Nhân viên quản lý"
+                               FontSize="28" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,20"/>
+                    <TextBlock x:Name="txtSubHeader" 
+                               Text="Các chức năng chính của bạn:" FontSize="18" FontWeight="SemiBold" Foreground="#334155" Margin="0,0,0,20"/>
+
+                    <UniformGrid x:Name="GridTrangChu" Columns="2" Rows="3" Margin="0,0,0,10" HorizontalAlignment="Stretch">
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ActionButton}" Content="📝  Đăng ký học viên (thay mặt học viên)"/>
+                            <TextBlock Text="↳ (include) Tạo tài khoản học viên"
+                                       FontSize="14" Foreground="#64748B" Margin="36,6,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ActionButton}" Content="🏫  Mở lớp học mới"/>
+                            <TextBlock Text="↳ Phân công giáo viên cho lớp"
+                                       FontSize="14" Foreground="#64748B" Margin="36,6,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ActionButton}" Content="📊  Quản lý điểm"/>
+                            <TextBlock Text="↳ Kiểm tra, chỉnh sửa điểm do giáo viên nhập"
+                                       FontSize="14" Foreground="#64748B" Margin="36,6,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ActionButton}" Content="💰  Quản lý học phí"/>
+                            <StackPanel Margin="36,6,0,0">
+                                <TextBlock Text="↳ (include) Ghi nhận thanh toán" FontSize="14" Foreground="#64748B"/>
+                                <TextBlock Text="↳ (extend) Nhắc nợ học phí" FontSize="14" Foreground="#64748B" Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Style="{StaticResource ActionButton}" Content="📑  Lập báo cáo &amp; thống kê"/>
+                            <TextBlock Text="↳ Xuất báo cáo theo lớp, theo kỳ, theo doanh thu" FontSize="14" Foreground="#64748B" Margin="36,6,0,0"/>
+                        </StackPanel>
+
+                        <Border Background="#EAF3FF" Padding="14" CornerRadius="10" Margin="16">
+                            <StackPanel>
+                                <TextBlock Text="Trợ giúp nhanh" FontSize="16" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,6"/>
+                                <TextBlock Text="• Tạo tài khoản học viên" FontSize="14" Foreground="#374151" Margin="0,4"/>
+                                <TextBlock Text="• Lập lịch dạy &amp; phân công" FontSize="14" Foreground="#374151" Margin="0,4"/>
+                                <TextBlock Text="• Báo cáo doanh thu" FontSize="14" Foreground="#374151" Margin="0,4"/>
+                            </StackPanel>
+                        </Border>
+
+                    </UniformGrid>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
