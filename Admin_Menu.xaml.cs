@@ -37,7 +37,7 @@ namespace Do_An
             catch (Exception ex)
             {
                 // Nếu có lỗi kết nối hoặc lỗi SQL
-                System.Windows.MessageBox.Show("Lỗi khi tải thống kê: " + ex.Message);
+                System.Windows.MessageBox.Show("Lỗi khi tải thống kê!: " + ex.Message);
             }
         }
     }
